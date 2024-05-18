@@ -1,0 +1,10 @@
+name: FD_MinecraftHelloWorld
+author: fatdavemakes
+description: Simple HelloWorld style minecraft plugin for a starting point for something actually useful
+version: 0.0.1
+main: com.github.fatdavemakes.minecrafthelloworld.MinecraftHelloWorldPlugin
+api-version: "1.20"
+commands:
+  helloworld:
+    description: Main command for hello world
+    usage: "Usage: /helloworld [start|stop|reload|status]"

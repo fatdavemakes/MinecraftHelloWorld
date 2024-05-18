@@ -1,0 +1,44 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '2.0.4'
+}
+
+group 'com.github.fatdavemakes'
+version '0.0.1'
+
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+    options.compilerArgs += ['-Xlint:unchecked']
+    options.compilerArgs += ['-Xlint:deprecation']
+}
+
+repositories {
+    mavenCentral()
+    // All 4 spigot private maven repos are required to download all spigot-api dependencies
+    maven {
+        url 'https://hub.spigotmc.org/nexus/content/repositories/releases/'
+    }
+    maven {
+        url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+    maven {
+        url 'https://hub.spigotmc.org/nexus/content/groups/public/'
+    }
+    maven {
+        url 'https://hub.spigotmc.org/nexus/content/groups/public/'
+    }
+
+    flatDir {
+        dirs "$rootDir/libs/"
+    }
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT'
+}
+
+clean.doFirst {
+    delete "$rootDir/out/"
+}
